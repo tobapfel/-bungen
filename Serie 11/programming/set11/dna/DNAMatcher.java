@@ -15,11 +15,9 @@ public class DNAMatcher {
 	 *         DNA strings contains characters other than A, C, G, and T.
 	 */
 	public static int findFirstBindingPosition(String baseDNA, String candidateDNA) {
-		if (!(checkDNA(baseDNA) || checkDNA(candidateDNA)))
+		if (!(checkDNA(baseDNA) && checkDNA(candidateDNA)))
 			return -1;
 		String complement = convertToComplement(candidateDNA);
-		if (baseDNA.contains(complement))
-			return -1;
 		int l = complement.length();
 		int i = 0;
 		while (baseDNA.length() >= l) {
@@ -29,6 +27,7 @@ public class DNAMatcher {
 			i += 1;
 			baseDNA = baseDNA.substring(1);
 		}
+		return -1;
 	}
 
 	private static String convertToComplement(String dna) {
