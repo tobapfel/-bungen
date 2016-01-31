@@ -15,20 +15,20 @@ public class DNAMatcher {
 	 *         DNA strings contains characters other than A, C, G, and T.
 	 */
 	public static int findFirstBindingPosition(String baseDNA, String candidateDNA) {
+		if (!(checkDNA(baseDNA) || checkDNA(candidateDNA)))
+			return -1;
 		String complement = convertToComplement(candidateDNA);
 		if (baseDNA.contains(complement))
 			return -1;
 		int l = complement.length();
-		String subDNA = "";
 		int i = 0;
-		while (baseDNA.length() >= complement.length()) {
-			subDNA = baseDNA.substring(0, l - 1);
+		while (baseDNA.length() >= l) {
+			String subDNA = baseDNA.substring(0, l - 1);
 			if (subDNA.equals(complement))
 				return i;
 			i += 1;
 			baseDNA = baseDNA.substring(1);
 		}
-
 	}
 
 	private static String convertToComplement(String dna) {
@@ -51,6 +51,15 @@ public class DNAMatcher {
 			}
 		}
 		return output;
+	}
+
+	private static boolean checkDNA(String dna) {
+		char str[] = dna.toCharArray();
+		for (char letter : str) {
+			if (!(letter == 'A' || letter == 'C' || letter == 'G' || letter == 'T'))
+				return false;
+		}
+		return true;
 	}
 
 }
