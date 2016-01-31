@@ -20,8 +20,13 @@ public class DNAMatcher {
 			return -1;
 		int l = complement.length();
 		String subDNA = "";
+		int i = 0;
 		while (baseDNA.length() >= complement.length()) {
 			subDNA = baseDNA.substring(0, l - 1);
+			if (subDNA.equals(complement))
+				return i;
+			i += 1;
+			baseDNA = baseDNA.substring(1);
 		}
 
 	}
