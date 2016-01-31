@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="Serie 1"/>
+	<classpathentry kind="src" path="Serie 2"/>
+	<classpathentry kind="src" path="Serie 3"/>
+	<classpathentry kind="src" path="Serie 4"/>
+	<classpathentry kind="src" path="Serie 5"/>
+	<classpathentry kind="src" path="Serie 6"/>
+	<classpathentry kind="src" path="Serie 7"/>
+	<classpathentry kind="src" path="Serie 8"/>
+	<classpathentry kind="src" path="Serie 9"/>
+	<classpathentry kind="src" path="Serie 10"/>
+	<classpathentry kind="src" path="Serie 11"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Tobias/Downloads/acm.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
