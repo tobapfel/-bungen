@@ -44,6 +44,17 @@ public class ZeldaList<T> {
 	public void add(int index, T value) {
 		if (index < 0 || index > this.index)
 			return;
+		ZeldaElement<T> element = new ZeldaElement<>();
+		element.setValue(value);
+		ZeldaElement<T> current = head;
+		for (int i = 0; i < index - 1; i++) {
+			current = current.getNextElement();
+		}
+		ZeldaElement<T> next = current.getNextElement();
+		current = element;
+		element = next;
+
+		this.index++;
 	}
 
 	/**
