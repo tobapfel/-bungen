@@ -52,7 +52,9 @@ public class ZeldaList<T> {
 		ZeldaElement<T> element = new ZeldaElement<>(); // create new element
 		element.setValue(value);
 		if (index == 0) { // new element = new head element
-			element.setNextElement(head);
+			element.setNextElement(head); // set new element in front of head
+											// element
+			head = element; // new element = new head element
 		} else {
 			ZeldaElement<T> current = head;
 			for (int i = 0; i < index - 1; i++) {
@@ -60,8 +62,8 @@ public class ZeldaList<T> {
 			}
 			ZeldaElement<T> next = current.getNextElement(); // save element at
 																// index
-			current = element; // link new element
-			element = next;
+			current.setNextElement(element); // link new element
+			element.setNextElement(next);
 		}
 
 		this.index++; // increase index
@@ -81,6 +83,9 @@ public class ZeldaList<T> {
 			return false;
 		if (head == null) // if there is no list
 			return false;
+		if (head.getValue().equals(value)) {
+
+		}
 
 	}
 
