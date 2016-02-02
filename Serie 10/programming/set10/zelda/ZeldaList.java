@@ -100,10 +100,15 @@ public class ZeldaList<T> {
 																												// for
 																												// value
 			;
-		if (current.getNextElement() == null)
+		if (current.getNextElement() == null) // if value don't exists
 			return false;
 		else {
-			current.setNextElement(current.getNextElement().getNextElement());
+			current.setNextElement(current.getNextElement().getNextElement()); // link
+																				// element
+																				// with
+																				// after
+																				// next
+																				// element
 			index--;
 			return true;
 		}
@@ -114,7 +119,7 @@ public class ZeldaList<T> {
 	 * Removes all elements from the list.
 	 */
 	public void clear() {
-		head = null;
+		head = null; // link head element with null
 		index = 0;
 	}
 
@@ -139,10 +144,11 @@ public class ZeldaList<T> {
 		if (index < 0)
 			return null;
 		ZeldaElement<T> current = head;
-		for (int i = 0; i < index && current != null; i++) {
+		for (int i = 0; i < index && current != null; i++) { // iterate through
+																// list
 			current = current.getNextElement();
 		}
-		if (current == null)
+		if (current == null) // if there is no element at this index
 			return null;
 		else
 			return current.getValue();
@@ -162,13 +168,16 @@ public class ZeldaList<T> {
 		if (index < 0 || value == null)
 			return null;
 		ZeldaElement<T> current = head;
-		for (int i = 0; i < index && current != null; i++) {
+		for (int i = 0; i < index && current != null; i++) { // iterate through
+																// list and
+																// search for
+																// value
 			current = current.getNextElement();
 		}
-		if (current == null)
+		if (current == null) // if there is no object with this value
 			return null;
 		else {
-			T old = current.getValue();
+			T old = current.getValue(); // save old value for return
 			current.setValue(value);
 			return old;
 		}
@@ -188,11 +197,17 @@ public class ZeldaList<T> {
 			return -1;
 		ZeldaElement<T> current;
 		int i = 0;
-		for (current = head; !(current.getValue().equals(value))
-				&& current != null; current = current.getNextElement()) {
+		for (current = head; current != null
+				&& !(current.getValue().equals(value)); current = current.getNextElement()) { // iterate
+																								// through
+																								// list
+																								// and
+																								// search
+																								// for
+																								// value
 			i++;
 		}
-		if (current == null)
+		if (current == null) // if there is no object with this value
 			return -1;
 		else
 			return i;
@@ -210,9 +225,15 @@ public class ZeldaList<T> {
 		if (value == null)
 			return false;
 		ZeldaElement<T> current;
-		for (current = head; !(current.getValue().equals(value)) && current != null; current = current.getNextElement())
+		for (current = head; current != null && !(current.getValue().equals(value)); current = current.getNextElement()) // iterate
+																															// through
+																															// list
+																															// and
+																															// search
+																															// vor
+																															// value
 			;
-		if (current == null)
+		if (current == null) // if there is no object with this value
 			return false;
 		else
 			return true;
@@ -225,7 +246,7 @@ public class ZeldaList<T> {
 	 * @return {@code true} if the list is empty, {@code false} if it isn't.
 	 */
 	public boolean isEmpty() {
-		// Implement me!
+		return index == 0;
 	}
 
 }
