@@ -51,9 +51,8 @@ public class ZeldaList<T> {
 			return;
 		ZeldaElement<T> element = new ZeldaElement<>(); // create new element
 		element.setValue(value);
-		if (index == 0) { // if there is no element before, new element = head
-							// element
-			head = element;
+		if (index == 0) { // new element = new head element
+			element.setNextElement(head);
 		} else {
 			ZeldaElement<T> current = head;
 			for (int i = 0; i < index - 1; i++) {
@@ -78,7 +77,11 @@ public class ZeldaList<T> {
 	 *         otherwise.
 	 */
 	public boolean remove(T value) {
-		// Implement me!
+		if (value == null)
+			return false;
+		if (head == null) // if there is no list
+			return false;
+
 	}
 
 	/**
