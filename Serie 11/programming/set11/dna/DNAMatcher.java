@@ -28,8 +28,8 @@ public class DNAMatcher {
 		int i = 0; // index
 		while (baseDNA.length() >= l) { // stops when the baseDNA is shorter
 										// then the canidateDNA
-			String subDNA = baseDNA.substring(0, l - 1); // builds a substring
-															// to be compared
+			String subDNA = baseDNA.substring(0, l); // builds a substring
+														// to be compared
 			if (subDNA.equals(complement)) // compares substring an canidateDNA
 				return i;
 			i += 1; // increase index
@@ -58,7 +58,7 @@ public class DNAMatcher {
 				output += "G";
 				break;
 			case 'G':
-				output += "G";
+				output += "C";
 				break;
 			case 'T':
 				output += "A";

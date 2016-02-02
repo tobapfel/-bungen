@@ -2,7 +2,7 @@ package programming.set11.ciphers;
 
 public class CaesarCipher {
 
-	CryptMode mode;
+	CryptMode mode; 
 	int k;
 
 	public CaesarCipher(CryptMode mode, int k) {
@@ -19,23 +19,23 @@ public class CaesarCipher {
 	 * @return encryted or decrypted version of the text.
 	 */
 	public String encode(String text) {
-		int n = 0;
+		int n = 0; //letter index
 		String output = "";
 		if (mode == CryptMode.ENCRYPT) {
 			char str[] = text.toCharArray();
-			for (char letter : str) {
-				n = letter;
-				n = shift(n, k);
-				char l = (char) n;
-				output += String.valueOf(l);
+			for (char letter : str) { // iterates through string
+				n = letter; //converts char to its ascii number
+				n = shift(n, k); //shift the letter with k
+				char l = (char) n; // converts ascii to char
+				output += String.valueOf(l); // build string and cast char to string
 			}
 		} else if (mode == CryptMode.DECRYPT) {
 			char str[] = text.toCharArray();
-			for (char letter : str) {
-				n = letter;
-				n = shift(n, -k);
-				char l = (char) n;
-				output += String.valueOf(l);
+			for (char letter : str) { // iterates through string
+				n = letter; //converts char to its ascii number
+				n = shift(n, -k); //shift the letter back with -k
+				char l = (char) n; // converts ascii to char
+				output += String.valueOf(l); // build string and cast char to string
 			}
 
 		}
