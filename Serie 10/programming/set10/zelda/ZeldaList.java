@@ -16,17 +16,22 @@ public class ZeldaList<T> {
 			return;
 		}
 
-		ZeldaElement<T> element = new ZeldaElement<>();
+		ZeldaElement<T> element = new ZeldaElement<>(); // create new element
 		element.setValue(value);
-		if (index == 0) {
+		if (index == 0) { // if there is no element before, the new element =
+							// head element
 			head = element;
 		} else {
 			ZeldaElement<T> current;
-			for (current = head; current.getNextElement() != null; current = current.getNextElement())
+			for (current = head; current.getNextElement() != null; current = current.getNextElement()) // search
+																										// for
+																										// tail
+																										// element
 				;
-			current.setNextElement(element);
+			current.setNextElement(element); // link new element with last
+												// element
 		}
-		index++;
+		index++; // increase index
 	}
 
 	/**
@@ -44,17 +49,23 @@ public class ZeldaList<T> {
 	public void add(int index, T value) {
 		if (index < 0 || index > this.index)
 			return;
-		ZeldaElement<T> element = new ZeldaElement<>();
+		ZeldaElement<T> element = new ZeldaElement<>(); // create new element
 		element.setValue(value);
-		ZeldaElement<T> current = head;
-		for (int i = 0; i < index - 1; i++) {
-			current = current.getNextElement();
+		if (index == 0) { // if there is no element before, new element = head
+							// element
+			head = element;
+		} else {
+			ZeldaElement<T> current = head;
+			for (int i = 0; i < index - 1; i++) {
+				current = current.getNextElement(); // get element at index -1
+			}
+			ZeldaElement<T> next = current.getNextElement(); // save element at
+																// index
+			current = element; // link new element
+			element = next;
 		}
-		ZeldaElement<T> next = current.getNextElement();
-		current = element;
-		element = next;
 
-		this.index++;
+		this.index++; // increase index
 	}
 
 	/**
