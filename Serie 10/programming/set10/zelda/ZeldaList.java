@@ -90,15 +90,15 @@ public class ZeldaList<T> {
 			return true;
 		}
 		ZeldaElement<T> current;
-		for (current = head; !(current.getNextElement().getValue().equals(value))
-				&& current.getNextElement() != null; current = current.getNextElement()) // iterate
-																							// through
-																							// the
-																							// list
-																							// and
-																							// search
-																							// for
-																							// value
+		for (current = head; current.getNextElement() != null
+				&& !(current.getNextElement().getValue().equals(value)); current = current.getNextElement()) // iterate
+																												// through
+																												// the
+																												// list
+																												// and
+																												// search
+																												// for
+																												// value
 			;
 		if (current.getNextElement() == null)
 			return false;
@@ -114,7 +114,7 @@ public class ZeldaList<T> {
 	 * Removes all elements from the list.
 	 */
 	public void clear() {
-		head.setNextElement(null);
+		head = null;
 		index = 0;
 	}
 
@@ -139,7 +139,7 @@ public class ZeldaList<T> {
 		if (index < 0)
 			return null;
 		ZeldaElement<T> current = head;
-		for (int i = 0; i <= index && current != null; i++) {
+		for (int i = 0; i < index && current != null; i++) {
 			current = current.getNextElement();
 		}
 		if (current == null)
@@ -162,7 +162,7 @@ public class ZeldaList<T> {
 		if (index < 0 || value == null)
 			return null;
 		ZeldaElement<T> current = head;
-		for (int i = 0; i <= index && current != null; i++) {
+		for (int i = 0; i < index && current != null; i++) {
 			current = current.getNextElement();
 		}
 		if (current == null)
@@ -184,7 +184,18 @@ public class ZeldaList<T> {
 	 *         is not in the list.
 	 */
 	public int indexOf(T value) {
-		// Implement me!
+		if (value == null)
+			return -1;
+		ZeldaElement<T> current;
+		int i = 0;
+		for (current = head; !(current.getValue().equals(value))
+				&& current != null; current = current.getNextElement()) {
+			i++;
+		}
+		if (current == null)
+			return -1;
+		else
+			return i;
 	}
 
 	/**
@@ -196,7 +207,16 @@ public class ZeldaList<T> {
 	 *         it doesn't or if it is {@code null}.
 	 */
 	public boolean contains(T value) {
-		// Implement me!
+		if (value == null)
+			return false;
+		ZeldaElement<T> current;
+		for (current = head; !(current.getValue().equals(value)) && current != null; current = current.getNextElement())
+			;
+		if (current == null)
+			return false;
+		else
+			return true;
+
 	}
 
 	/**
