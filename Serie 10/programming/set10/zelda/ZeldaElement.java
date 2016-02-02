@@ -9,7 +9,7 @@ package programming.set10.zelda;
  */
 class ZeldaElement<T> {
 
-	/** The vaue this element holds. */
+	/** The value this element holds. */
 	private T value = null;
 	/** Link to the next element. */
 	private ZeldaElement<T> nextElement = null;

@@ -12,6 +12,21 @@ public class ZeldaList<T> {
 	 *            the value to add. If {@code value == null}, nothing happens.
 	 */
 	public void add(T value) {
+		if (value == null) {
+			return;
+		}
+
+		ZeldaElement<T> element = new ZeldaElement<>();
+		element.setValue(value);
+		if (index == 0) {
+			head = element;
+		} else {
+			ZeldaElement<T> current;
+			for (current = head; current.getNextElement() != null; current = current.getNextElement())
+				;
+			current = element;
+
+		}
 
 	}
 
@@ -28,7 +43,7 @@ public class ZeldaList<T> {
 	 *            the value to insert. If this is {@code null}, nothing happens.
 	 */
 	public void add(int index, T value) {
-		// Implement me!
+		if ( index < 0 || index )
 	}
 
 	/**
