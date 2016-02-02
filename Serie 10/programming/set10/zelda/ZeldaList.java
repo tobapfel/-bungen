@@ -57,7 +57,7 @@ public class ZeldaList<T> {
 			head = element; // new element = new head element
 		} else {
 			ZeldaElement<T> current = head;
-			for (int i = 0; i < index - 1; i++) {
+			for (int i = 0; i < index; i++) {
 				current = current.getNextElement(); // get element at index -1
 			}
 			ZeldaElement<T> next = current.getNextElement(); // save element at
@@ -83,8 +83,29 @@ public class ZeldaList<T> {
 			return false;
 		if (head == null) // if there is no list
 			return false;
-		if (head.getValue().equals(value)) {
-
+		if (head.getValue().equals(value)) { // if value is head element, next
+												// element is new head element
+			head = head.getNextElement();
+			index--;
+			return true;
+		}
+		ZeldaElement<T> current;
+		for (current = head; !(current.getNextElement().getValue().equals(value))
+				&& current.getNextElement() != null; current = current.getNextElement()) // iterate
+																							// through
+																							// the
+																							// list
+																							// and
+																							// search
+																							// for
+																							// value
+			;
+		if (current.getNextElement() == null)
+			return false;
+		else {
+			current.setNextElement(current.getNextElement().getNextElement());
+			index--;
+			return true;
 		}
 
 	}
@@ -93,7 +114,8 @@ public class ZeldaList<T> {
 	 * Removes all elements from the list.
 	 */
 	public void clear() {
-		// Implement me!
+		head.setNextElement(null);
+		index = 0;
 	}
 
 	/**
@@ -102,7 +124,7 @@ public class ZeldaList<T> {
 	 * @return number of elements.
 	 */
 	public int size() {
-		// Implement me!
+		return index;
 	}
 
 	/**
@@ -114,7 +136,16 @@ public class ZeldaList<T> {
 	 *         invalid.
 	 */
 	public T get(int index) {
-		// Implement me!
+		if (index < 0)
+			return null;
+		ZeldaElement<T> current = head;
+		for (int i = 0; i <= index && current != null; i++) {
+			current = current.getNextElement();
+		}
+		if (current == null)
+			return null;
+		else
+			return current.getValue();
 	}
 
 	/**
@@ -128,7 +159,19 @@ public class ZeldaList<T> {
 	 *         invalid or the new value is {@code null}.
 	 */
 	public T set(int index, T value) {
-		// Implement me!
+		if (index < 0 || value == null)
+			return null;
+		ZeldaElement<T> current = head;
+		for (int i = 0; i <= index && current != null; i++) {
+			current = current.getNextElement();
+		}
+		if (current == null)
+			return null;
+		else {
+			T old = current.getValue();
+			current.setValue(value);
+			return old;
+		}
 	}
 
 	/**
