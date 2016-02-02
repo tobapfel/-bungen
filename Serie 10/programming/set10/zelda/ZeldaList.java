@@ -24,10 +24,9 @@ public class ZeldaList<T> {
 			ZeldaElement<T> current;
 			for (current = head; current.getNextElement() != null; current = current.getNextElement())
 				;
-			current = element;
-
+			current.setNextElement(element);
 		}
-
+		index++;
 	}
 
 	/**
@@ -43,7 +42,8 @@ public class ZeldaList<T> {
 	 *            the value to insert. If this is {@code null}, nothing happens.
 	 */
 	public void add(int index, T value) {
-		if ( index < 0 || index )
+		if (index < 0 || index > this.index)
+			return;
 	}
 
 	/**
