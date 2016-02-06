@@ -84,7 +84,8 @@ public class EBookReader extends GraphicsProgram {
 			while (st.hasMoreTokens()) {
 				String str = st.nextToken();
 				test += str;
-				test += " ";
+				if (st.hasMoreTokens())
+					test += " ";
 				GLabel label = new GLabel("");
 				label.setFont(font);
 				FontMetrics fm = label.getFontMetrics();
