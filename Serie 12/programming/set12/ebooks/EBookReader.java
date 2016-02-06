@@ -7,11 +7,11 @@ import acm.graphics.GLabel;
 import acm.program.GraphicsProgram;
 
 public class EBookReader extends GraphicsProgram {
-	private String font = "";
-	private int boarder = 0;
-	private int lineWidth = 0;
-	private int lineIndent = 0;
-	private double spacingFactor = 0;
+	private String font = "Serif-12";
+	private int boarder = 10;
+	private int lineWidth = 300;
+	private int lineIndent = 20;
+	private double spacingFactor = 1.2;
 
 	/**
 	 * configures the font to be used to display the text
@@ -60,50 +60,57 @@ public class EBookReader extends GraphicsProgram {
 	}
 
 	public void displayText(String input) {
-		// set defaults
-		if (font == "")
-			font = "Serif-12";
-		if (boarder == 0)
-			boarder = 10;
-		if (lineWidth == 0)
-			lineWidth = 300;
-		if (lineIndent == 0)
-			lineIndent = 20;
-		if (spacingFactor == 0.0)
-			spacingFactor = 1.2;
 
 		StringTokenizer nl = new StringTokenizer(input, "\n");
-		int line = 1;
+		int line = 0; // line index
 		while (nl.hasMoreTokens()) {
-			StringTokenizer st = new StringTokenizer(nl.nextToken(), " ");
+			StringTokenizer st = new StringTokenizer(nl.nextToken(), " "); // set
+																			// Tokenizer
+																			// for
+																			// lines
 			double lineWidth = 0;
 			String test = "";
 			String save = "";
 
-			int indent = lineIndent;
+			int indent = lineIndent; // sets indent so the next label has a line
+										// indent
 			while (st.hasMoreTokens()) {
 				String str = st.nextToken();
-				test += str;
+				test += str; // adds a word to test
 				if (st.hasMoreTokens())
-					test += " ";
-				GLabel label = new GLabel("");
+					test += " "; // adds a space
+				GLabel label = new GLabel(""); // new label for font metrics
 				label.setFont(font);
 				FontMetrics fm = label.getFontMetrics();
 				lineWidth = fm.stringWidth(test) + indent;
-				if (lineWidth > this.lineWidth) {
-					label = new GLabel(save);
+				if (lineWidth > this.lineWidth) { // test if the string is to
+													// long
+					label = new GLabel(save); // creates the label with string
+												// without current word
 					label.setFont(font);
-					label.setLocation(boarder + indent, boarder + (line * (fm.getHeight() * spacingFactor)));
+					label.setLocation(boarder + indent,
+							boarder + fm.getAscent() + (line * (fm.getHeight() * spacingFactor))); // calculate
+																									// the
+																									// position
+																									// of
+																									// the
+																									// label
 					add(label);
-					test = str + " ";
-					indent = 0;
-					line++;
+					test = str + " "; // builds a new string with the current
+										// word and a space
+					indent = 0; // sets indent 0 so the next line has no line
+								// indent
+					line++; // increase the line counter
 				} else {
-					save = test;
-					if (!(st.hasMoreTokens())) {
+					save = test; // save the current string
+					if (!(st.hasMoreTokens())) { // adds a label if the label is
+													// shorter then line width
+													// and there are no more
+													// words
 						GLabel lastLabel = new GLabel(test);
 						lastLabel.setFont(font);
-						lastLabel.setLocation(boarder + indent, boarder + (line * (fm.getHeight() * spacingFactor)));
+						lastLabel.setLocation(boarder + indent,
+								boarder + fm.getAscent() + (line * (fm.getHeight() * spacingFactor)));
 						add(lastLabel);
 						line++;
 					}
@@ -114,13 +121,8 @@ public class EBookReader extends GraphicsProgram {
 
 	@Override
 	public void run() {
-		setSize(600, 300);
-		setTextFont("Garamond-bold-18");
-		setBorder(10);
-		setLineWidth(350);
-		setFirstLineIndent(20);
-		setLineSpacingFactor(1.2);
-		String str = "The alley was unusually dark and alley-like. A thick mist covered the ground, penetrating the air like a heavy mattress, but without the solid parts. He felt reminded of an ingeniously staged theatre play. But this time, he might not make it out in one piece, the Don would make sure of that if given half a chance.\n'You're late!', said a voice in the dark.\nIt was then that he noticed that he might not have been on time.";
+		setSize(600, 600);
+		String str = "Alice waited till the eyes appeared, and then nodded. 'It's no use speaking to it,' she thought, 'till its ears have come, or at least one of them.' In another minute the whole head appeared, and then Alice put down her flamingo, and began an account of the game, feeling very glad she had someone to listen to her. The Cat seemed to think that there was enough of it now in sight, and no more of it appeared.";
 		displayText(str);
 	}
 
