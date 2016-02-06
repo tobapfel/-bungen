@@ -17,21 +17,39 @@ public class patchwork extends GraphicsProgram {
 
 	}
 
+	/**
+	 * Draws Patchworks in a grid with {@code row} rows and {@code col} columns
+	 * 
+	 * @param row
+	 *            the number of rows
+	 * @param col
+	 *            the number of columns
+	 */
 	private void createPatches(int row, int col) {
-		setSize(100 * col + 200, row * 100 + 200);
-		for (int i = 1; i <= row; i++) {
-			for (int j = 1; j <= col; j++) {
-				GRect rect = new GRect(100 * j, 100 * i, 100, 100);
+		setSize(100 * col + 200, row * 100 + 200); // resize the window with
+													// border
+		for (int i = 1; i <= row; i++) { // rows
+			for (int j = 1; j <= col; j++) { // column
+				GRect rect = new GRect(100 * j, 100 * i, 100, 100); // draws a
+																	// rectangle
 				add(rect);
-				addRandomPatch(100 * j, 100 * i);
+				addRandomPatch(100 * j, 100 * i); // fills rectangle
 			}
 		}
 
 	}
 
+	/**
+	 * draws a random Patchwork at a give position
+	 * 
+	 * @param x
+	 *            the x-coordinate of the Patchwork
+	 * @param y
+	 *            the y-coordinate of the Patchwork
+	 */
 	private void addRandomPatch(int x, int y) {
 		Random rd = new Random();
-		switch (rd.nextInt(3)) {
+		switch (rd.nextInt(3)) { // choose a random patchwork
 		case 0:
 			patch1(x, y);
 			break;
@@ -45,46 +63,97 @@ public class patchwork extends GraphicsProgram {
 
 	}
 
+	/**
+	 * draws a random Patchwork at a give position
+	 * 
+	 * @param x
+	 *            the x-coordinate of the Patchwork
+	 * @param y
+	 *            the y-coordinate of the Patchwork
+	 */
 	private void patch3(int x, int y) {
+		GRect background = new GRect(x, y, 100, 100); // draws a background
+														// rectangle
+		background.setFillColor(radomColor());
+		background.setFilled(true);
+		add(background);
+		Random rn = new Random();
+		for (int i = 0; i < 1000; i++) {
+			GRect rect = new GRect(x + rn.nextInt(90) + 1, y + rn.nextInt(90) + 1, 10, 10); // draws
+																							// a
+																							// rectangle
+																							// at
+																							// a
+																							// random
+																							// position
+			rect.setColor(radomColor());
+			rect.setFilled(true);
+			add(rect);
+		}
 
 	}
 
+	/**
+	 * draws a random Patchwork at a give position
+	 * 
+	 * @param x
+	 *            the x-coordinate of the Patchwork
+	 * @param y
+	 */
 	private void patch2(int x, int y) {
 		int pos = 0;
 		for (int i = 10; i > 0; i -= 2) {
 
-			GRect rect = new GRect(x + pos, y + pos, i * 10, i * 10);
+			GRect rect = new GRect(x + pos, y + pos, i * 10, i * 10); // draws a
+																		// rectangle
 			rect.setColor(radomColor());
 			rect.setFilled(true);
 			add(rect);
-			GOval oval = new GOval(x + pos, y + pos, i * 10, i * 10);
+			GOval oval = new GOval(x + pos, y + pos, i * 10, i * 10); // draws a
+																		// circle
 			oval.setColor(radomColor());
 			oval.setFilled(true);
 			add(oval);
-			pos += 10;
+			pos += 10; // sets the position of next objects
 
 		}
 
 	}
 
+	/**
+	 * draws a random Patchwork at a give position
+	 * 
+	 * @param x
+	 *            the x-coordinate of the Patchwork
+	 * @param y
+	 */
 	private void patch1(int x, int y) {
+		GRect rect = new GRect(x, y, 100, 100); // draws a background rectangle
+		rect.setFillColor(radomColor());
+		rect.setFilled(true);
+		add(rect);
 		int pos = 0;
 		for (int i = 100; i > 0; i -= 2) {
-			GOval oval = new GOval(pos + x, pos + y, i, i);
+			GOval oval = new GOval(pos + x, pos + y, i, i); // draws a circle
 			oval.setColor(radomColor());
 			oval.setFilled(true);
 			add(oval);
-			pos += 1;
+			pos += 1; // calculate the position of the next circle
 		}
 
 	}
 
+	/**
+	 * generates a random color
+	 * 
+	 * @return a random color
+	 */
 	public Color radomColor() {
 		Random rd = new Random();
-		float r = rd.nextFloat();
-		float g = rd.nextFloat();
-		float b = rd.nextFloat();
-		return new Color(r, g, b);
+		float r = rd.nextFloat(); // generates a random value for red
+		float g = rd.nextFloat(); // generates a random value for green
+		float b = rd.nextFloat(); // generates a random value for blue
+		return new Color(r, g, b); // creates new color
 	}
 
 }
