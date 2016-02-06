@@ -31,12 +31,13 @@ public class LinkedElement<T> {
 	 *         with that index.
 	 */
 	private T get(int i, int n) {
-		if (this.link == null)
+		if (this.link == null) // if there is no next element
 			return null;
-		else if (i == n) {
+		else if (i == n) { // the object at the given index
 			return this.value;
 		} else
-			return this.link.get(i, n + 1);
+			return this.link.get(i, n + 1); // method call itself and increase
+											// the counter
 
 	}
 
@@ -65,12 +66,13 @@ public class LinkedElement<T> {
 	 *            the new value to set.
 	 */
 	private void set(int i, int n, T newVal) {
-		if (this.link == null)
-			return;
-		else if (i == n) {
+		if (i == n) { // sets the i-th element
 			this.value = newVal;
+		} else if (this.link == null) { // if there is no new element
+			return;
 		} else
-			this.link.set(i, n + 1, newVal);
+			this.link.set(i, n + 1, newVal); // method calls itself and increase
+												// counter
 
 	}
 
@@ -99,12 +101,15 @@ public class LinkedElement<T> {
 	 *         linked elements.
 	 */
 	private int firstIndexOf(T newVal, int index) {
-		if (newVal == this.value)
+		if (newVal == this.value) // if we found our element
 			return index;
-		else if (this.link == null)
+		else if (this.link == null) // if there is no other element
 			return -1;
 		else
-			return this.link.firstIndexOf(newVal, index + 1);
+			return this.link.firstIndexOf(newVal, index + 1); // method calls
+																// himself and
+																// increase the
+																// counter
 	}
 
 	/**
@@ -115,11 +120,13 @@ public class LinkedElement<T> {
 	 *            the new value.
 	 */
 	public void add(T newVal) {
-		if (this.link == null) {
-			LinkedElement<T> le = new LinkedElement<>(newVal);
-			this.link = le;
+		if (this.link == null) {// if there is no next element
+			LinkedElement<T> le = new LinkedElement<>(newVal); // create new
+																// linked
+																// element
+			this.link = le; // link the new linked element
 		} else
-			this.link.add(newVal);
+			this.link.add(newVal); // method calls himself
 	}
 
 	/**
@@ -151,12 +158,13 @@ public class LinkedElement<T> {
 	 * @return the new head element.
 	 */
 	private void remove(int i, int n) {
-		if (this.link == null)
+		if (i - 1 == n) {
+			this.link = this.link.link; // link the element with the after next
+		} else if (this.link == null) { // there is no next element
 			return;
-		else if (i - 1 == n) {
-			this.link = this.link.link;
 		} else
-			this.link.remove(i, n + 1);
+			this.link.remove(i, n + 1); // method calls itself and increase
+										// counter
 	}
 
 }
