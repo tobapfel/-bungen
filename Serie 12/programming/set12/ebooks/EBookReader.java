@@ -100,6 +100,14 @@ public class EBookReader extends GraphicsProgram {
 					line++;
 				} else {
 					save = test;
+					if (!(st.hasMoreTokens())) {
+						GLabel lastLabel = new GLabel(test);
+						lastLabel.setFont(font);
+						lastLabel.setLocation(boarder + indent,
+								boarder + (line * fm.getAscent()) + ((line - 1) * (fm.getHeight() * spacingFactor)));
+						add(lastLabel);
+						line++;
+					}
 				}
 			}
 		}
