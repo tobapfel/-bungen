@@ -92,8 +92,7 @@ public class EBookReader extends GraphicsProgram {
 				if (lineWidth > this.lineWidth) {
 					label = new GLabel(save);
 					label.setFont(font);
-					label.setLocation(boarder + indent,
-							boarder + (line * fm.getAscent()) + ((line - 1) * (fm.getHeight() * spacingFactor)));
+					label.setLocation(boarder + indent, boarder + (line * (fm.getHeight() * spacingFactor)));
 					add(label);
 					test = str + " ";
 					indent = 0;
@@ -103,8 +102,7 @@ public class EBookReader extends GraphicsProgram {
 					if (!(st.hasMoreTokens())) {
 						GLabel lastLabel = new GLabel(test);
 						lastLabel.setFont(font);
-						lastLabel.setLocation(boarder + indent,
-								boarder + (line * fm.getAscent()) + ((line - 1) * (fm.getHeight() * spacingFactor)));
+						lastLabel.setLocation(boarder + indent, boarder + (line * (fm.getHeight() * spacingFactor)));
 						add(lastLabel);
 						line++;
 					}
