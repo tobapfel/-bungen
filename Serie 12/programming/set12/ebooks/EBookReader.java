@@ -96,15 +96,23 @@ public class EBookReader extends GraphicsProgram {
 																									// the
 																									// label
 					add(label);
+					if (!(st.hasMoreTokens())) { // if the current word is the
+													// last word and don't fits
+													// in the current line
+						GLabel lastLabel = new GLabel(str);
+						lastLabel.setFont(font);
+						lastLabel.setLocation(boarder + indent,
+								boarder + fm.getAscent() + (line * (fm.getHeight() * spacingFactor)));
+						add(lastLabel);
+						line++;
+					}
 					test = str + " "; // builds a new string with the current
 										// word and a space
 					indent = 0; // sets indent 0 so the next line has no line
 								// indent
 					line++; // increase the line counter
-				} else {
-					save = test; // save the current string
-				}
-				if (!(st.hasMoreTokens())) { // adds a label if the label is
+				} else if (!(st.hasMoreTokens())) { // adds a label if the label
+													// is
 					// shorter then line width
 					// and there are no more
 					// words
@@ -114,6 +122,8 @@ public class EBookReader extends GraphicsProgram {
 							boarder + fm.getAscent() + (line * (fm.getHeight() * spacingFactor)));
 					add(lastLabel);
 					line++;
+				} else {
+					save = test; // save the current string
 				}
 			}
 		}
