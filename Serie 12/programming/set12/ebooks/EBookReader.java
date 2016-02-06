@@ -103,17 +103,17 @@ public class EBookReader extends GraphicsProgram {
 					line++; // increase the line counter
 				} else {
 					save = test; // save the current string
-					if (!(st.hasMoreTokens())) { // adds a label if the label is
-													// shorter then line width
-													// and there are no more
-													// words
-						GLabel lastLabel = new GLabel(test);
-						lastLabel.setFont(font);
-						lastLabel.setLocation(boarder + indent,
-								boarder + fm.getAscent() + (line * (fm.getHeight() * spacingFactor)));
-						add(lastLabel);
-						line++;
-					}
+				}
+				if (!(st.hasMoreTokens())) { // adds a label if the label is
+					// shorter then line width
+					// and there are no more
+					// words
+					GLabel lastLabel = new GLabel(test);
+					lastLabel.setFont(font);
+					lastLabel.setLocation(boarder + indent,
+							boarder + fm.getAscent() + (line * (fm.getHeight() * spacingFactor)));
+					add(lastLabel);
+					line++;
 				}
 			}
 		}
