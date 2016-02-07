@@ -26,6 +26,8 @@ public class patchwork extends GraphicsProgram {
 	 *            the number of columns
 	 */
 	private void createPatches(int row, int col) {
+		assert row >= 0 : row;
+		assert col >= 0 : col;
 		setSize(100 * col + 200, row * 100 + 200); // resize the window with
 													// border
 		for (int i = 1; i <= row; i++) { // rows
@@ -48,6 +50,8 @@ public class patchwork extends GraphicsProgram {
 	 *            the y-coordinate of the Patchwork
 	 */
 	private void addRandomPatch(int x, int y) {
+		assert !(x < 0) : x;
+		assert !(y < 0) : y;
 		Random rd = new Random();
 		switch (rd.nextInt(3)) { // choose a random patchwork
 		case 0:
@@ -72,6 +76,8 @@ public class patchwork extends GraphicsProgram {
 	 *            the y-coordinate of the Patchwork
 	 */
 	private void patch3(int x, int y) {
+		assert !(x < 0) : x;
+		assert !(y < 0) : y;
 		GRect background = new GRect(x, y, 100, 100); // draws a background
 														// rectangle
 		background.setFillColor(radomColor());
@@ -101,6 +107,8 @@ public class patchwork extends GraphicsProgram {
 	 * @param y
 	 */
 	private void patch2(int x, int y) {
+		assert !(x < 0) : x;
+		assert !(y < 0) : y;
 		int pos = 0;
 		for (int i = 10; i > 0; i -= 2) {
 
@@ -115,6 +123,7 @@ public class patchwork extends GraphicsProgram {
 			oval.setFilled(true);
 			add(oval);
 			pos += 10; // sets the position of next objects
+			assert pos <= 50 : pos;
 
 		}
 
@@ -128,6 +137,8 @@ public class patchwork extends GraphicsProgram {
 	 * @param y
 	 */
 	private void patch1(int x, int y) {
+		assert !(x < 0) : x;
+		assert !(y < 0) : y;
 		GRect rect = new GRect(x, y, 100, 100); // draws a background rectangle
 		rect.setFillColor(radomColor());
 		rect.setFilled(true);
@@ -139,6 +150,7 @@ public class patchwork extends GraphicsProgram {
 			oval.setFilled(true);
 			add(oval);
 			pos += 1; // calculate the position of the next circle
+			assert pos <= 100 : pos;
 		}
 
 	}
